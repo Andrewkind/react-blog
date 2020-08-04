@@ -48,18 +48,21 @@ class Homepage extends React.Component {
 
 
         {/* Author info block */}
+        <span className="info-block">
 
-        {/* Avatar Photo */}
-        <img className="avatar" alt="Rebound" src={require('../../media/barney.jpg')} />
 
-        {/* Author Name */}
-        <p className="author-p">Barney Anderson</p>
+          {/* Avatar Photo */}
+          <img className="avatar" alt="Rebound" src={require('../../media/barney.jpg')} />
 
-        {/*Follow Icons */}
-        <span className="follow-span">
-          {githubIcon}
-          {twitterIcon}
-          {emailIcon}
+          {/* Author Name */}
+          <p className="author-p">Barney Anderson</p>
+
+          {/*Follow Icons */}
+          <span className="follow-span">
+            {githubIcon}
+            {twitterIcon}
+            {emailIcon}
+          </span>
         </span>
 
         {/* Blog Posts */}

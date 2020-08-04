@@ -19,10 +19,10 @@ class BlogPost extends React.Component {
     // React Icon Font Awesome Icons
     const thumbsUpIcon = <FaThumbsUp className="icon thumb thumbs-up selected-thumb" />
     const thumbsDownIcon = <FaThumbsDown className="icon thumb thumbs-down" />
-    const editIcon = <FaEdit className="icon thumb" onClick={this.deleteBlogPost} />
-    const deleteIcon = <FaTrash className="icon thumb" onClick={this.deleteBlogPost} />
-    const shareIcon = <FaShare className="icon thumb" onClick={this.deleteBlogPost} />
-    const printIcon = <FaPrint className="icon thumb" onClick={this.deleteBlogPost} />
+    const editIcon = <FaEdit className="icon" onClick={this.deleteBlogPost} />
+    const deleteIcon = <FaTrash className="icon" onClick={this.deleteBlogPost} />
+    const shareIcon = <FaShare className="icon" onClick={this.deleteBlogPost} />
+    const printIcon = <FaPrint className="icon" onClick={this.deleteBlogPost} />
 
     let text = this.props.blogContent;
 
@@ -31,43 +31,52 @@ class BlogPost extends React.Component {
     var photoLink = "(test)[http://www.google.com]";
     var num = text.indexOf(photoLink);
 
-    var part1 = <label className="p1">{text.substring(0, num)}</label>
-    var part2 = <label className="p2">{text.substring(num + photoLink.length)}</label>
+    var whole;
+
+    if (num > 1) {
+      var part1 = <label className="p1">{text.substring(0, num)}</label>
+      var part2 = <label className="p2">{text.substring(num + photoLink.length)}</label>
 
 
-    var photo = <figure><img className="blog-image" alt="Rebound" src={require('../../media/bird.png')} />
-    <figcaption >Barney...!</figcaption>
-    </figure>
+      var photo = <figure><img className="blog-image" alt="Rebound" src={require('../../media/bird.jpg')} />
+        <figcaption >Barney...!</figcaption>
+      </figure>
 
-    var whole = <> {part1} {photo} </>
-    text = text.substring(num + photoLink.length);
-
-    //remove from text
-
-    var index = 0;
-    while (text.indexOf(photoLink) > 1) {
-
-      num = text.indexOf(photoLink);
-
-      index++;
-      if (index > 30) {
-        break;
-      }
-      part1 = <label className="p3">{text.substring(0, num)}</label>
-      console.log(text.substring(num + photoLink.length));
-      part2 = <label className="p4">{text.substring(num + photoLink.length)}</label>
-      photo = <figure><img className="blog-image" alt="Rebound" src={require('../../media/mona.png')} />
-        <figcaption >Mona...</figcaption>
-        </figure>
-      
-
-
-
-      var newPart = <> {part1} {photo} {part2} </>
-      whole = <> {whole} {newPart} </>
+      whole = <> {part1} {photo} </>
       text = text.substring(num + photoLink.length);
 
+      //remove from text
+
+      var index = 0;
+      while (text.indexOf(photoLink) > 1) {
+
+        num = text.indexOf(photoLink);
+
+        index++;
+        if (index > 30) {
+          break;
+        }
+        part1 = <label className="p3">{text.substring(0, num)}</label>
+        console.log(text.substring(num + photoLink.length));
+        part2 = <label className="p4">{text.substring(num + photoLink.length)}</label>
+        photo = <figure><img className="blog-image" alt="Rebound" src={require('../../media/mona.jpg')} />
+          <figcaption >Mona...</figcaption>
+        </figure>
+
+
+
+
+        var newPart = <> {part1} {photo} {part2} </>
+        whole = <> {whole} {newPart} </>
+        text = text.substring(num + photoLink.length);
+
+      }
     }
+    else {
+      whole = <label> {text} </label>
+    }
+
+
 
 
     // Return Function Begins
