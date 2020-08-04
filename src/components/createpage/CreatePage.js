@@ -3,6 +3,9 @@ import { addBlogPost } from '../../actions/blogposts';
 import { connect } from 'react-redux';
 import Nav from '../reusable/Nav';
 import Header from '../reusable/Header';
+import '../../css/reset.css';
+import '../../css/styles.css';
+import '../../css/color.css';
 
 class CreatePage extends Component {
     constructor(props) {
