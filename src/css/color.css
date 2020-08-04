@@ -1,0 +1,46 @@
+:root {
+    --main-color: #06c;
+    --accent-color: #006;
+    --dark-blue: #3E38F2;
+    --off-white: #ffffff;
+    --pastel-pink: rgb(255, 173, 201);
+  }
+
+
+
+
+header {
+    background-color: var(--off-white);
+}
+
+ul {
+    background-color: var(--off-white);
+}
+
+.header-li {
+    background-color: var(--off-white);
+
+}
+
+.header-li:hover {
+    background-color: var(--pastel-pink);
+
+}
+.header-li:hover > a {
+    color: white;
+}
+.blog-p {
+    border-color: var(--off-white);
+}
+
+footer {
+    border-color: var(--dark-blue);
+}
+
+nav {
+    border-color: var(--dark-blue);
+}
+
+header {
+    border-color: var(--dark-blue);
+}
