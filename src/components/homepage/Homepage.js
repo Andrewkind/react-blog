@@ -67,12 +67,14 @@ class Homepage extends React.Component {
 
         {/* Blog Posts */}
         <ul className="blogs-ul">
-          {this.props.blogPosts.map(blogPost => (
+          {this.props.blogPosts.slice().reverse().map(blogPost => (
             <BlogPost
               key={blogPost.uniqueId}
               uniqueId={blogPost.uniqueId}
               blogContent={blogPost.blogContent}
               blogTitle={blogPost.blogTitle}
+              blogTopics={blogPost.blogTopics}
+              blogDate={blogPost.blogDate}
             />
           ))}
         </ul>

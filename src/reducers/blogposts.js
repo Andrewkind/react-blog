@@ -15,7 +15,9 @@ const blogPostReducer = (state = [], action) => { // Default state is an empty a
       const newBlogPost = {
         uniqueId: uuidv4(), // Ensure a unique ID.
         blogContent: action.blogContent,
-        blogTitle : action.blogTitle // Read passed-in "new to-do" value.
+        blogTitle : action.blogTitle,// Read passed-in "new to-do" value.
+        blogTopics : action.blogTopics,
+        blogDate : action.blogDate
       };
       // Create a new array (with the same contents as the original.)
       const updatedState = state.slice();

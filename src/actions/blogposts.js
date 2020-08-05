@@ -9,7 +9,9 @@ const addBlogPost = (blog ) => {
   return {
     type: 'ADD_BLOG_POST', // Our action "label."
     blogContent: blog.blogContent,
-    blogTitle: blog.blogTitle// We can also transport necessary info that the reducer might need.
+    blogTitle: blog.blogTitle,// We can also transport necessary info that the reducer might need.
+    blogTopics: blog.blogTopics,
+    blogDate: blog.blogDate,
   }
 }
 const removeBlogPost = blogPostId => {

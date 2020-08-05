@@ -6,6 +6,15 @@ import { FaThumbsUp, FaThumbsDown, FaEdit, FaShare, FaTrash, FaPrint } from 'rea
 
 class BlogPost extends React.Component {
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+        likes: 0,
+        dislikes: 0,
+    };
+}
+
   // DeleteBlogPost event handler
   deleteBlogPost = () => {
     // We'll grab our ID from props.
@@ -13,12 +22,27 @@ class BlogPost extends React.Component {
     // run dispatch on reducer
     this.props.dispatch(removeBlogPost(id));
   }
+  addLike = () => {
+    let newCount = this.state.likes + 1;
+      this.setState({
+      likes: newCount
+    });
+  };
+  disLike = () => {
+    let newCount = this.state.dislikes + 1;
+      this.setState({
+      dislikes: newCount
+    });
+  };
+
 
   render() {
 
+ 
+
     // React Icon Font Awesome Icons
-    const thumbsUpIcon = <FaThumbsUp className="icon thumb thumbs-up selected-thumb" />
-    const thumbsDownIcon = <FaThumbsDown className="icon thumb thumbs-down" />
+    const thumbsUpIcon = <FaThumbsUp className="icon thumb thumbs-up selected-thumb" onClick={this.addLike}>Likes: {this.state.likes}</FaThumbsUp>
+    const thumbsDownIcon = <FaThumbsDown className="icon thumb thumbs-down" onClick={this.disLike}>DisLikes: {this.state.dislikes}</FaThumbsDown>
     const editIcon = <FaEdit className="icon" onClick={this.deleteBlogPost} />
     const deleteIcon = <FaTrash className="icon" onClick={this.deleteBlogPost} />
     const shareIcon = <FaShare className="icon" onClick={this.deleteBlogPost} />
@@ -32,8 +56,8 @@ class BlogPost extends React.Component {
     var num = text.indexOf(photoLink);
 
     var whole;
-
-    if (num > 1) {
+    var testing = false;
+    if (testing && num > 1) {
       var part1 = <label className="p1">{text.substring(0, num)}</label>
       var part2 = <label className="p2">{text.substring(num + photoLink.length)}</label>
 
@@ -77,7 +101,34 @@ class BlogPost extends React.Component {
     }
 
 
+       // Format Date
+    //source: https://stackoverflow.com/a/58900382
+    // formatDate = (date) => {
+    //   var date = date.split(/\D/),
+    //     dt = new Date(date[2], date[0] - 1, date[1]);
+    //   return dt.toLocaleString('en-CA', {
+    //     month: 'short',
+    //     day: 'numeric',
+    //     year: 'numeric'
+    //   });
+    // }
 
+    function format (s) {
+
+ 
+      if (s === undefined || s === "" ) {
+        return
+      }
+      var s = s.split(/\D/),
+      dt = new Date(s[2], s[0] - 1, s[1]);
+    return dt.toLocaleString('en-CA', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  }
+
+  let formattedDate = format(this.props.blogDate);
 
     // Return Function Begins
     return (
@@ -98,11 +149,11 @@ class BlogPost extends React.Component {
             <p className="blog-info-p">
 
               <label>3 min read</label>
-              <label>August 3rd, 2020</label>
+              <label> {formattedDate}</label>
 
             </p>
             <p className="topics-label">
-              Topics: #blog #tech #hello #world
+              Topics: {this.props.blogTopics}
           </p>
 
           </section>
@@ -116,7 +167,7 @@ class BlogPost extends React.Component {
           <span className="bottom-span">
 
             <span>
-              {thumbsUpIcon} 3 {thumbsDownIcon} 0
+              {thumbsUpIcon} {this.state.likes}  {thumbsDownIcon} {this.state.dislikes}
           </span>
 
             <span className="blog-icons">
