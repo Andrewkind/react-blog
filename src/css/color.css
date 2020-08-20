@@ -1,46 +1,102 @@
 :root {
-    --main-color: #06c;
-    --accent-color: #006;
-    --dark-blue: #3E38F2;
-    --off-white: #ffffff;
-    --pastel-pink: rgb(255, 173, 201);
-  }
+    --mainColor: #06c;
+    --accentColor: #006;
+    --darkBlue: #3E38F2;
+    --offWhite: #ffffff;
+    --pastelPink: rgb(255, 204, 221);
+    --pastelPurple: rgb(245, 219, 255);
+    --pastelBlue: rgb(219, 224, 255);
 
-
-
+}
 
 header {
-    background-color: var(--off-white);
+    background-color: var(--offWhite);
 }
 
 ul {
-    background-color: var(--off-white);
+    background-color: var(--offWhite);
 }
 
 .header-li {
-    background-color: var(--off-white);
-
+    background-color: var(--offWhite);
 }
 
 .header-li:hover {
-    background-color: var(--pastel-pink);
+    background-color: var(--pastelPink);
+}
 
+.active {
+    background-color: var(--pastelPink);
 }
-.header-li:hover > a {
-    color: white;
-}
+
+
 .blog-p {
-    border-color: var(--off-white);
+    border-color: var(--offWhite);
 }
 
 footer {
-    border-color: var(--dark-blue);
+    border-color: var(--pastelPink);
 }
 
 nav {
-    border-color: var(--dark-blue);
+    border-color: var(--darkBlue);
 }
 
 header {
-    border-color: var(--dark-blue);
+    border-color: var(--darkBlue);
+}
+
+.delete-icon {
+    color: rgb(238, 0, 0);
+}
+
+.topics-label {
+    background-color: var(--pastelPink);
+}
+
+.blog-info-p {
+    background-color: var(--pastelPurple);
+}
+
+.icon:hover {
+    color: rgb(144, 0, 137);
+}
+
+
+
+.header-nav {
+    border-bottom: 2px solid var(--pastelPink);
+}
+
+.info-block {
+    background-color: #1fc8db;
+    background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+    border-bottom-color: var(--pastelPink);
+}
+
+a {
+    color: rgb(0, 0, 0);
+}
+
+.tooltip .tooltiptext {
+    color: #fff;
+    background-color: rgb(0, 0, 0);
+}
+
+.avatar {
+    border-color: rgb(255, 255, 255);
+}
+
+.tooltip {
+    border-bottom: rgb(0, 0, 0);
+}
+
+.submit-button {
+    background-color: var(--pastelBlue);
+    color:black;
+}
+
+.error-message {
+    background-color: rgb(255, 0, 0);
+    color: white;
 }

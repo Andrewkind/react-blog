@@ -1,39 +1,59 @@
 import React, { Component } from 'react' // react
-import { addBlogPost, login } from '../../actions/blogposts'; // actions
-import { connect } from 'react-redux'; // connect
+import { login, modifyBlogPost } from '../../actions/blogposts'; //action
+import { connect } from 'react-redux'; //connect
 
 // Import reusable
-import Nav from '../reusable/Nav'; // nav
-import Header from '../reusable/Header'; // header
-import Footer from '../reusable/Footer'; // footer
+import Nav from '../reusable/Nav';//Nav
+import Footer from '../reusable/Footer';//Footer
+import Header from '../reusable/Header';//Header
 
-// Import CSS
+// Import CSS 
 import '../../css/reset.css';
 import '../../css/styles.css';
 import '../../css/color.css';
 import '../../css/createblog.css';
 
 /*
-    CreatePage Component
-    Main component to display the create-new-blog page.
+    EditPage Component
+    Admin can edit existing blog using this component.
 */
-class CreatePage extends Component {
+class EditPage extends Component {
     constructor(props) {
         super(props)
         let date = new Date(); // Date
         let day = date.getDate() // Today
         let month = date.getMonth() + 1; //Current Month
-        let year = date.getFullYear();        //Current Year
+        let year = date.getFullYear(); //Current Year
         let newDate = month + '/' + day + '/' + year; //  02/04/2020
 
-        this.state = {
-            blogPost: "",
-            blogTitle: "",
-            blogTopics: "",
-            blogDate: newDate // Set date immediately
+        let path = this.props.location.pathname;
+        let id;
+     
+        if (path !== "/") {
+            //we have query string
+            let query = path.replace("/", "");
+            query = query.replace("edit/", "");
+            id = query.replace("$Blog=", "");
         }
 
-        // Check if user is logged in.
+        let refinedBlogPosts = this.props.blogPosts;
+        
+        refinedBlogPosts = refinedBlogPosts.filter(function (obj) {
+            return obj.uniqueId === id;
+        });
+
+        const blog = refinedBlogPosts[0];
+        const blogText = blog.blogContent;
+
+        this.state = {
+            blogContent: blogText,
+            blogTitle: blog.blogTitle,
+            blogTopics: blog.blogTopics,
+            blogDate: newDate, // Set date immediately
+            uniqueId: id
+        }
+
+        // Check if admin is logged in
         let loggedIn = this.props.blogPosts.loggedIn
 
         if (!loggedIn) {
@@ -43,31 +63,25 @@ class CreatePage extends Component {
     }
 
     /*
-  AddBlogPost method
-  parameter: event -> Disable the default behaviour
-  */
-    addBlogPost = (event) => {
+    modifyBlogPost method
+    parameter: event -> Disable the default behaviour
+    modify the existing blog
+    */
+    modifyBlogPost = (event) => {
+
         event.preventDefault(); // Stop the page from reloading.
 
-        let loggedIn = this.props.blogPosts.loggedIn
-
-        if (!loggedIn) {
-            // we are not logged in. Do not allow?
-            alert("You are not logged in!");
-            window.location.href = "/";
-        }
-
-        // Create blog object
         const blog = {
-            blogContent: this.state.blogPost,
+            blogContent: this.state.blogContent,
             blogTitle: this.state.blogTitle,
             blogTopics: this.state.blogTopics,
-            blogDate: this.state.blogDate
+            blogDate: this.state.blogDate,
+            uniqueId: this.state.uniqueId
         };
 
-        // Add
-        this.props.dispatch(addBlogPost(blog));
-
+        let loggedIn = this.props.blogPosts.loggedIn
+        // Dispatch an action(modify)
+        this.props.dispatch(modifyBlogPost(blog));
         // Clear the field for new input.
         // Use our pre-formatted method.
         this.updateItem('blogPost', '');
@@ -75,9 +89,8 @@ class CreatePage extends Component {
         this.updateItem('blogTopics', '');
         this.updateItem('blogDate', '');
 
-
-
         if (loggedIn) {
+             // check if loggedIn 
             this.props.dispatch(login());
         }
         this.props.history.replace({ pathname: `/` })
@@ -88,25 +101,14 @@ class CreatePage extends Component {
     }
 
     render() {
-
         return (
             <>
                 <span className="header-nav">
-                    <Header />
-                    <Nav />
+                    <Header /> {/* Header */}
+                    <Nav /> {/* Navigation */}
                 </span>
-                <h1>New Blog</h1>
-                <form onSubmit={this.addBlogPost}>
-                    <label className="blog-date" htmlFor="date-text"> Blog Date:</label>
-                    <input type="text"
-                        name="date-text"
-                        id="date-text"
-                        title = "date text"
-                        required
-                        disabled
-                        value={this.state.blogDate}
-                        onChange={event => this.doNothing}
-                    />
+                <h1>Edit Blog</h1>
+                <form onSubmit={this.modifyBlogPost}>
                     <label className="new-blog-Title" htmlFor="blogTitle" >Blog Title:</label>
                     <input
                         className="blog-title"
@@ -123,34 +125,26 @@ class CreatePage extends Component {
                         type="text"
                         name="blogTopics"
                         id="blogTopics"
-                        title= "blog topics"
+                        title = "blog topics"
                         value={this.state.blogTopics}
                         onChange={event => this.updateItem('blogTopics', event.target.value)}
                     />
                     <label className="new-blog-label" htmlFor="blogPost">
                         Enter a new Blog-Post:
-                         </label>
-
-                    {/* Photo Hint */}
-                    <details>
-                        Use ##[filename](caption) to add a photo! <p className="photo-example"> ##[bird.jpg](a bird!)</p>
-
-                             <summary>
-                            Add photos?
-                             </summary>
-                    </details>
+                    </label>
                     <textarea
                         className="blog-content"
                         type="textarea"
+                        title = "blog content"
                         name="blogPost"
                         id="blogPost"
-                        title = "blog post"
-                        value={this.state.blogPost}
-                        onChange={event => this.updateItem('blogPost', event.target.value)}>
+                        value={this.state.blogContent}
+                        onChange={event => this.updateItem('blogContent', event.target.value)}>
                     </textarea>
-                    <input className="submit-button add-button" type="submit" value="Add Blog!" />
+                   
+                    <input className="submit-button edit-button" type="submit" value="Edit" />
                 </form>
-                <Footer />
+                <Footer /> {/* Footer */}
             </>
         )
     }
@@ -158,4 +152,4 @@ class CreatePage extends Component {
 
 export default connect(
     state => { return { blogPosts: state } },
-)(CreatePage); // Name of the component (in this case: CreatePage)
+)(EditPage); 

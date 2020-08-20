@@ -1,68 +1,56 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+![Rebound](/src/media/snail-small.png)
 
-In the project directory, you can run:
+# Rebound
+## A lightweight react/redux Blog app
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Install Rebound to provide yourself with a lightweight, simple to use blogging app.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+![Rebound](/readme.png)
 
-### `npm test`
+Using `react`, `redux`, `react router` frameworks.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Features include:
+- Log in and out as the site admin
+- Log out as admin
+- Change your admin credentials (username/password)
+- Publish blog posts with photos
+- Delete your previous blog posts
+- Edit your previous blog posts
+- Create a share link to share the blog post with others
+- Print your favourite blog post
 
-### `npm run build`
+Coming Soon:
+- Comment section
+- Add codeblocks to your blog post
+- Add embed Youtube links to your post
+- Add links to your post
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `Installation Instructions`
+- Clone the repository or Download the zip and extract
+- Run `npm install` to install all necessary modules
+- Run `npm start` to start the server
+- Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### `Settings`
+Default login credentials: <br />
+`username:` `admin` <br/>
+`password:` `admin`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You may change your admin credentials in the Settings page
+You may change your avatar photo by swapping out the current file located in `/Src/Media/avatar.jpg`
 
-### `npm run eject`
+### `Clearing Data`
+In case you need to clear the current blogs and admin data, you may change `CLEAR_DATE` in `index.js` to `true`
+After the server recompiles, it is recommended to change `CLEAR_DATE` back to `false`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `Project Documents`
+Project Documents can be found in the /Documents folder found in root.
+- Project Proposal
+- Technical Diagram
+- App Mockup
+- Operating Manual
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### `Trello`
+[Trello Board](https://trello.com/b/W7cc7tov/rebound)
