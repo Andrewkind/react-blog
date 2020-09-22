@@ -51,6 +51,3 @@ Project Documents can be found in the /Documents folder found in root.
 - Technical Diagram
 - App Mockup
 - Operating Manual
-
-### `Trello`
-[Trello Board](https://trello.com/b/W7cc7tov/rebound)
