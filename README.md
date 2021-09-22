@@ -21,7 +21,7 @@ Features include:
 - Create a share link to share the blog post with others
 - Print your favourite blog post
 
-Coming Soon:
+Upcoming Features:
 - Comment section
 - Add codeblocks to your blog post
 - Add embed Youtube links to your post
